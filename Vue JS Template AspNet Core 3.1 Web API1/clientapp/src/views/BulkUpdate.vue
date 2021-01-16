@@ -16,7 +16,7 @@
       </b-row>
       <b-row class="mb-3">
           <b-col md="2" style="margin-top: 30px;">
-            <b-button @click="saveProduct()">Save Product</b-button>
+            <b-button @click="bulkUpdate()">Save Product</b-button>
           </b-col>
       </b-row>
   </div>
@@ -45,11 +45,6 @@ export default {
       selectedTable: "Search Table Name",
     };
   },
-  computed: {
-    rows() {
-       return this.products.length;
-    }
-  },
   mounted() {
     apiService.getTableNames().then(response => { this.tableNames = response.data});
   },
@@ -63,8 +58,7 @@ export default {
     getColumnNames() {
       apiService.getColumnNames(this.selectedTable).then(response => { this.columnNames = response.data })
     },
-    saveProduct() {
-      console.log(this.product)
+    bulkUpdate() {
       var model = this.createSendRequestObject();
       console.log(model);
       apiService.bulkUpdate(model).then(response => { console.log(response.data) })
