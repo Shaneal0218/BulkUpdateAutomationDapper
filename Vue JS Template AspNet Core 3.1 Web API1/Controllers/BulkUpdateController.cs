@@ -35,8 +35,8 @@ namespace BulkUpdateAPIExample.Controllers
         [HttpGet]
         public IActionResult GetColumnNames(string tname)
         {
-            List<string> names = _repo.GetColumnNames(tname);
-            return Ok(names);
+            List<ColumnDTO> columns = _repo.GetColumnNames(tname);
+            return Ok(columns);
         }
         [Route("bulkUpdate")]
         [HttpPost]
@@ -45,6 +45,22 @@ namespace BulkUpdateAPIExample.Controllers
             
             _repo.BulkUpdate(values);
             return Ok(StatusCode(200));
+        }
+        [Route("rowUpdate")]
+        [HttpPost]
+        public IActionResult RowUpdate(List<ValuePairs> values)
+        {
+
+            _repo.RowUpdate(values);
+            return Ok(StatusCode(200));
+        }
+        [Route("getData/{tname}")]
+        [HttpGet]
+        public IActionResult GetData(string tname)
+        {
+
+            List<object> data = _repo.GetData(tname);
+            return Ok(data);
         }
     }
 }

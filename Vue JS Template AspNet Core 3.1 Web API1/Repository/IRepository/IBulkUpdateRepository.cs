@@ -10,7 +10,9 @@ namespace BulkUpdateAPIExample.Repository.IRepository
     public interface IBulkUpdateRepository
     {
         List<string> GetTableNames();
-        public List<string> GetColumnNames(string tname);
+        public List<ColumnDTO> GetColumnNames(string tname);
         public void BulkUpdate(List<ValuePairs> table);
+        public void RowUpdate(List<ValuePairs> table);
+        public List<object> GetData(string tname);
     }
 }
